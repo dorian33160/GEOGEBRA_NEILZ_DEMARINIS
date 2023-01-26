@@ -1,10 +1,10 @@
-package PROJET;
+package TD1_FINI;
 
-public class Losange extends Quadrilatere{
+public class Carré extends Quadrilatere {
 
     private Point[] sommet;
 
-    Losange (Point point1, Point point2, Point point3, Point point4)
+    Carré (Point point1, Point point2, Point point3, Point point4)
     {
         super(point1,point2, point3, point4);
         sommet = new Point[4];
@@ -39,29 +39,34 @@ public class Losange extends Quadrilatere{
     {
         if (côté(sommet[0], sommet[1]) == côté(sommet[1], sommet[2]) && côté(sommet[1], sommet[2]) == côté(sommet[2], sommet[3]) && côté(sommet[2], sommet[3]) == côté(sommet[3], sommet[0]))
         {
-            return "Je suis un losange";
+            return " Je suis un carré ";
         }
         else
         {
-            return "Je ne suis pas un losange";
+            return " Je ne suis pas un carré ";
         }
     }
 
     public String propriete()
     {
-        return "Un losange est un quadrilatère qui a ses quatre côtés de même longueur et ses quatre sommets distincts";
+        return "Un carré est un quadrilatère qui a ses quatre côtés de la même longueur et ses quatre angles droits";
     }
 
     @Override
     public String type()
     {
-        return "Losange";
+        return "Carré";
     }
 
     @Override
     public String toString()
     {
-        return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1]) + ". " + propriete() + ". Mes sommets sont " + coordonnees();
+        return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1]) + ". " + propriete() + vérification() + ". Mes sommets sont " + coordonnees();
     }
 
+    @Override
+    public void affiche()
+    {
+        System.out.println(this);
+    }
 }

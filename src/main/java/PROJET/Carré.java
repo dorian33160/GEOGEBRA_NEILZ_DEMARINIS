@@ -64,9 +64,4 @@ public class Carré extends Quadrilatere{
         return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1]) + ". " + propriete() + vérification() + ". Mes sommets sont " + coordonnees();
     }
 
-    @Override
-    public void affiche()
-    {
-        System.out.println(this);
-    }
 }

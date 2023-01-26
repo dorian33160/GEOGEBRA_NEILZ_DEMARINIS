@@ -1,6 +1,6 @@
-package PROJET;
+package TD1_FINI;
 
-public class Losange extends Quadrilatere{
+public class Losange extends Quadrilatere {
 
     private Point[] sommet;
 
@@ -64,4 +64,9 @@ public class Losange extends Quadrilatere{
         return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1]) + ". " + propriete() + ". Mes sommets sont " + coordonnees();
     }
 
+    @Override
+    public void affiche()
+    {
+        System.out.println(this);
+    }
 }

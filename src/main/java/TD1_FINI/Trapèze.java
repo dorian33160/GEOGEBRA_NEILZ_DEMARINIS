@@ -1,6 +1,6 @@
-package PROJET;
+package TD1_FINI;
 
-public class Trapèze extends Quadrilatere{
+public class Trapèze extends Quadrilatere {
 
     private Point[] sommet;
     private double[] longueur;
@@ -85,4 +85,9 @@ public class Trapèze extends Quadrilatere{
         return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1], sommet[2], sommet[3]) + ". " + propriete() + ". Mes sommets sont " + coordonnees();
     }
 
+    @Override
+    public void affiche()
+    {
+        System.out.println(this);
+    }
 }

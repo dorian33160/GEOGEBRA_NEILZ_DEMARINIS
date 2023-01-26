@@ -1,38 +1,124 @@
 package PROJET;
 
-public class Main
-{
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.Optional;
+import java.util.*;
 
-    public static void main(String[] args)
-    {
-        Point p1 = new Point(0,7);
-        Point p2 = new Point(3,6);
-        Point p3 = new Point(2,8);
-        Point p4 = new Point(4,8);
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.TextInputDialog;
+public class Main extends Application {
 
-        Point p1_carré = new Point(0,7);
-        Point p2_carré = new Point(0,0);
-        Point p3_carré = new Point(7,0);
-        Point p4_carré = new Point(7,7);
+    Pane root = new Pane();
+    @Override
+    public void start(Stage stage) throws IOException {
 
-        Quadrilatere q = new Quadrilatere(p1,p2,p3,p4);
-        q.affiche();
+/*---------CRÉATION DU MENU POUR CREER UNE FORME GEOMETRIQUE---------------*/
 
-        Parallélogramme para = new Parallélogramme(p1,p2,p3,p4);
-        para.affiche();
+        MenuBar menuBar = new MenuBar(); //Création de la barre de menu
 
-        Carré carre = new Carré(p1_carré, p2_carré, p3_carré, p4_carré);
-        carre.affiche();
+        Menu figureMenu = new Menu("Figure"); //Création du menu Figure
 
-        Losange losange = new Losange(p1_carré, p2_carré, p3_carré, p4_carré);
-        losange.affiche();
+        MenuItem carréMenuItem = new MenuItem("Carré"); //Création du sous-menu Carré
+        carréMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
 
-        Trapèze trapeze = new Trapèze(p1, p2, p3, p4);
-        trapeze.affiche();
+                Point[] points = new Point[4];
 
-        Rectangle rectangle = new Rectangle(p1_carré, p2_carré, p3_carré, p4_carré);
-        rectangle.affiche();
 
+                TextInputDialog coord_point = new TextInputDialog("");
+                for (int i = 1; i < 5; i++)
+                {
+                    coord_point.setTitle("Saisie des coordonnées");
+                    coord_point.setHeaderText("Saisie des coordonnées du point " + i);
+                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+
+                    Optional<String> result = coord_point.showAndWait();
+
+                    if (result.isPresent()){
+                        //récupère les variable, transforme les en double et créé un objet point
+                        String[] coordonnees = result.get().split(","); //Sépare les coordonnées
+                        double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
+                        double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
+                        points[i - 1] = new Point(x,y);
+                    }
+                }
+
+                Carré c2 = new Carré(points[0], points[1], points[2], points[3]);
+            }
+        });
+
+        MenuItem cerfvolantMenuItem = new MenuItem("Cerf-volant"); //Création du sous-menu Cerf-volant
+        cerfvolantMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+            }
+        });
+
+        MenuItem losangeMenuItem = new MenuItem("Losange"); //Création du sous-menu Losange
+        losangeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+            }
+        });
+
+        MenuItem parallélogrammeMenuItem = new MenuItem("Parallélogramme"); //Création du sous-menu Parallélogramme
+        parallélogrammeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+            }
+        });
+
+        MenuItem rectangleMenuItem = new MenuItem("Rectangle"); //Création du sous-menu Rectangle
+        rectangleMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+            }
+        });
+
+        MenuItem trapèzeMenuItem = new MenuItem("Trapèze"); //Création du sous-menu Trapèze
+        trapèzeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+            }
+        });
+
+        figureMenu.getItems().add(carréMenuItem);
+        figureMenu.getItems().add(cerfvolantMenuItem);
+        figureMenu.getItems().add(losangeMenuItem);
+        figureMenu.getItems().add(parallélogrammeMenuItem);
+        figureMenu.getItems().add(rectangleMenuItem);
+        figureMenu.getItems().add(trapèzeMenuItem);
+
+        menuBar.getMenus().add(figureMenu);
+
+        VBox root = new VBox();
+        root.getChildren().add(menuBar);
+
+        /*---------CRÉATION DU MENU POUR CREER UNE FORME GEOMETRIQUE---------------*/
+
+        Scene scene = new Scene(root, 1920, 1080);
+        stage.setTitle("GeoGebra");
+        stage.setScene(scene);
+        stage.show();
     }
 
+    public static void main(String[] args) {
+
+        launch(args);
+    }
 }

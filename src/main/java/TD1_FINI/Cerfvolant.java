@@ -1,6 +1,6 @@
-package PROJET;
+package TD1_FINI;
 
-public class Cerfvolant extends Quadrilatere{
+public class Cerfvolant extends Quadrilatere {
 
     private Point[] sommet;
     private double[] longueur;
@@ -124,4 +124,9 @@ public class Cerfvolant extends Quadrilatere{
         return "Je suis un " + type() + " de longueur " + côté(sommet[0], sommet[1], sommet[2], sommet[3]) + ". " + propriete() + vérification(sommet[0],sommet[1],sommet[2],sommet[3]) + "Mes sommets sont " + coordonnees();
     }
 
+    @Override
+    public void affiche()
+    {
+        System.out.println(this);
+    }
 }

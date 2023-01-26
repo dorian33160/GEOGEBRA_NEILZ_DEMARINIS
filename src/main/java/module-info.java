@@ -3,6 +3,6 @@ module imt.minesales.fr.geogebra_neilz_demarinis {
     requires javafx.fxml;
 
 
-    opens imt.minesales.fr.geogebra_neilz_demarinis to javafx.fxml;
-    exports imt.minesales.fr.geogebra_neilz_demarinis;
+    opens PROJET to javafx.fxml;
+    exports PROJET;
 }

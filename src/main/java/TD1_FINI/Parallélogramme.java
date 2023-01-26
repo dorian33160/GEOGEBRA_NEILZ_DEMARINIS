@@ -1,6 +1,6 @@
-package PROJET;
+package TD1_FINI;
 
-public class Parallélogramme extends Quadrilatere{
+public class Parallélogramme extends Quadrilatere {
 
     private Point[] sommet;
 
@@ -74,5 +74,11 @@ public class Parallélogramme extends Quadrilatere{
     public String toString()
     {
         return "Je suis un " + type() + " de longueur " + longueur1(sommet[0], sommet[1]) + "et de largeur " + longueur2(sommet[2], sommet[3]) + ". " + propriete() + "Mes sommets sont " + coordonnees();
+    }
+
+    @Override
+    public void affiche()
+    {
+        System.out.println(this);
     }
 }

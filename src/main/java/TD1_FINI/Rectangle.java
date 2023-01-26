@@ -1,6 +1,6 @@
-package PROJET;
+package TD1_FINI;
 
-public class Rectangle extends Quadrilatere{
+public class Rectangle extends Quadrilatere {
 
     private Point[] sommet;
 
@@ -94,4 +94,9 @@ public class Rectangle extends Quadrilatere{
         return "Je suis un " + type() + " de longueur " + longueur1(sommet[0], sommet[1]) + "et de largeur " + largeur1(sommet[1], sommet[2]) + ". " + propriete() + vérification(sommet[0],sommet[1],sommet[2],sommet[3]) + "Mes sommets sont " + coordonnees();
     }
 
+    @Override
+    public void affiche()
+    {
+        System.out.println(this);
+    }
 }
