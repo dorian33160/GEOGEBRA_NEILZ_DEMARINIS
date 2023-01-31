@@ -20,6 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.shape.Line;
 
+import javafx.scene.control.Alert;
+
 
 public class Main extends Application {
 
@@ -92,9 +94,12 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                    System.out.println("Voilà le rectangle que vous avez dessiné !");
                 }else {
-                    System.out.println("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Erreur de coordonnées");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.showAndWait();
                 }
 
 
@@ -158,9 +163,12 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                    System.out.println("Voilà le rectangle que vous avez dessiné !");
                 }else {
-                    System.out.println("Vous n'avez pas dessiné un rectangle, recommencez avec des coordonnées juste !");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Erreur de coordonnées");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.showAndWait();
                 }
             }
         });
@@ -221,9 +229,12 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                    System.out.println("Voilà le parallelogramme que vous avez dessiné !");
                 }else {
-                    System.out.println("Vous n'avez pas dessiné un parallelogramme, recommencez avec des coordonnées juste !");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Erreur de coordonnées");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.showAndWait();
                 }
             }
         });
@@ -284,9 +295,12 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                    System.out.println("Voilà le cerf-volant que vous avez dessiné !");
                 }else {
-                    System.out.println("Vous n'avez pas dessiné un cerf-volant, recommencez avec des coordonnées juste !");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Erreur de coordonnées");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.showAndWait();
                 }
             }
         });
@@ -346,9 +360,12 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                    System.out.println("Voilà le losange que vous avez dessiné !");
                 }else {
-                    System.out.println("Vous n'avez pas dessiné un losange, recommencez avec des coordonnées juste !");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Erreur de coordonnées");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.showAndWait();
                 }
             }
         });
@@ -409,9 +426,12 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                    System.out.println("Voilà le trapèze que vous avez dessiné !");
                 }else {
-                    System.out.println("Vous n'avez pas dessiné un trapèze, recommencez avec des coordonnées juste !");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Erreur de coordonnées");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.showAndWait();
                 }
             }
         });
