@@ -54,13 +54,15 @@ public class Rectangle extends Quadrilatere{
 
     }
 
-    public String vérification(Point point1, Point point2, Point point3, Point point4)
+    public boolean verification()
     {
-        if (this.largeur1(point2, point3) == this.largeur2(point4, point1) && this.longueur1(point1, point2) == this.longueur2(point3, point4))
+        if (this.largeur1(sommet[1], sommet[2]) == this.largeur2(sommet[3], sommet[0]) && this.longueur1(sommet[0], sommet[1]) == this.longueur2(sommet[2], sommet[3]))
         {
-            return " Cette figure est bien un rectangle. ";
-        } else {
-            return " Cette figure n'est pas un rectangle. ";
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -91,7 +93,7 @@ public class Rectangle extends Quadrilatere{
     @Override
     public String toString()
     {
-        return "Je suis un " + type() + " de longueur " + longueur1(sommet[0], sommet[1]) + "et de largeur " + largeur1(sommet[1], sommet[2]) + ". " + propriete() + vérification(sommet[0],sommet[1],sommet[2],sommet[3]) + "Mes sommets sont " + coordonnees();
+        return "Je suis un " + type() + " de longueur " + longueur1(sommet[0], sommet[1]) + "et de largeur " + largeur1(sommet[1], sommet[2]) + ". " + propriete() + "Mes sommets sont " + coordonnees();
     }
 
 }

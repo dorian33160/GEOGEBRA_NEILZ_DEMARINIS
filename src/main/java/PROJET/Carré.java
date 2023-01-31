@@ -1,6 +1,6 @@
 package PROJET;
 
-public class Carré extends Quadrilatere{
+public class Carré extends Quadrilatere {
 
     private Point[] sommet;
 
@@ -12,6 +12,7 @@ public class Carré extends Quadrilatere{
         sommet[1] = point2;
         sommet[2] = point3;
         sommet[3] = point4;
+
     }
 
     public double côté (Point point1, Point point2)
@@ -35,15 +36,15 @@ public class Carré extends Quadrilatere{
 
     }
 
-    public String vérification()
+    public boolean verification()
     {
         if (côté(sommet[0], sommet[1]) == côté(sommet[1], sommet[2]) && côté(sommet[1], sommet[2]) == côté(sommet[2], sommet[3]) && côté(sommet[2], sommet[3]) == côté(sommet[3], sommet[0]))
         {
-            return " Je suis un carré ";
+            return true;
         }
         else
         {
-            return " Je ne suis pas un carré ";
+            return false;
         }
     }
 
@@ -61,7 +62,7 @@ public class Carré extends Quadrilatere{
     @Override
     public String toString()
     {
-        return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1]) + ". " + propriete() + vérification() + ". Mes sommets sont " + coordonnees();
+        return "Je suis un " + type() + " de côté " + côté(sommet[0], sommet[1]) + ". " + propriete() + ". Mes sommets sont " + coordonnees();
     }
 
 }

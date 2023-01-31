@@ -1,7 +1,7 @@
 package PROJET;
 
-public class Quadrilatere
-{
+public class Quadrilatere {
+
     private Point[] sommet;
 
     Quadrilatere(Point point1, Point point2, Point point3, Point point4)

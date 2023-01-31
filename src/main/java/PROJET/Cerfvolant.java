@@ -82,15 +82,15 @@ public class Cerfvolant extends Quadrilatere{
 
     }
 
-    public String vérification(Point point1, Point point2, Point point3, Point point4)
+    public boolean verification()
     {
-        if (côté1(point1, point2) == côté2(point2, point3) && côté3(point3, point4) == côté4(point4, point1))
+        if (côté1(sommet[0], sommet[1]) == côté2(sommet[1], sommet[2]) && côté3(sommet[2], sommet[3]) == côté4(sommet[3], sommet[0]))
         {
-            return "C'est un cerf-volant. ";
+            return true;
         }
         else
         {
-            return "Ce n'est pas un cerf-volant. ";
+            return false;
         }
     }
 
@@ -121,7 +121,7 @@ public class Cerfvolant extends Quadrilatere{
     @Override
     public String toString()
     {
-        return "Je suis un " + type() + " de longueur " + côté(sommet[0], sommet[1], sommet[2], sommet[3]) + ". " + propriete() + vérification(sommet[0],sommet[1],sommet[2],sommet[3]) + "Mes sommets sont " + coordonnees();
+        return "Je suis un " + type() + " de longueur " + côté(sommet[0], sommet[1], sommet[2], sommet[3]) + ". " + propriete() + "Mes sommets sont " + coordonnees();
     }
 
 }

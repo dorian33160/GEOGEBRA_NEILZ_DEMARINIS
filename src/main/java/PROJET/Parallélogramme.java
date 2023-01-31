@@ -47,15 +47,15 @@ public class Parallélogramme extends Quadrilatere{
 
     }
 
-    public String vérification()
+    public boolean verification()
     {
         if (longueur1(sommet[0], sommet[1]) == longueur1(sommet[2], sommet[3]) && longueur2(sommet[0], sommet[1]) == longueur2(sommet[2], sommet[3]))
         {
-            return "Je suis un parallèlogramme.";
+            return true;
         }
         else
         {
-            return "Je ne suis pas un parallèlogramme.";
+            return false;
         }
     }
 

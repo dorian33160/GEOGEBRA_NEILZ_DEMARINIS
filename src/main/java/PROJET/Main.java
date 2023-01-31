@@ -1,32 +1,41 @@
 package PROJET;
 
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.*;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.shape.Line;
+
+
 public class Main extends Application {
 
     Pane root = new Pane();
+    //Déclaration des points[] pour faire les lignes :
+
     @Override
     public void start(Stage stage) throws IOException {
 
-/*---------CRÉATION DU MENU POUR CREER UNE FORME GEOMETRIQUE---------------*/
+        /*---------CRÉATION DU MENU POUR CREER UNE FORME GEOMETRIQUE---------------*/
 
         MenuBar menuBar = new MenuBar(); //Création de la barre de menu
 
         Menu figureMenu = new Menu("Figure"); //Création du menu Figure
 
+        //CARRE !!!
         MenuItem carréMenuItem = new MenuItem("Carré"); //Création du sous-menu Carré
         carréMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -52,16 +61,233 @@ public class Main extends Application {
                         points[i - 1] = new Point(x,y);
                     }
                 }
+                //System.out.println(points[0]+ " "  + points[1]+ " "  + points[2]+ " " + points[3]);
+                Carré c1 = new Carré(points[0], points[1], points[2], points[3]);
 
-                Carré c2 = new Carré(points[0], points[1], points[2], points[3]);
+                //si c'est un carré ca affiche
+                if (c1.verification()) {
+                    //Premiere ligne a dessiner
+                    Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
+                    l1.setStroke(Color.RED);
+                    l1.setStrokeWidth(5);
+
+                    //Deuxieme ligne a dessiner
+                    Line l2 = new Line(points[1].getX()+100, points[1].getY()+100, points[2].getX()+100, points[2].getY()+100);
+                    l2.setStroke(Color.RED);
+                    l2.setStrokeWidth(5);
+
+                    //Troisieme ligne a dessiner
+                    Line l3 = new Line(points[2].getX()+100, points[2].getY()+100, points[3].getX()+100, points[3].getY()+100);
+                    l3.setStroke(Color.RED);
+                    l3.setStrokeWidth(5);
+
+                    //quatrieme ligne a dessiner
+                    Line l4 = new Line(points[3].getX()+100, points[3].getY()+100, points[0].getX()+100, points[0].getY()+100);
+                    l4.setStroke(Color.RED);
+                    l4.setStrokeWidth(5);
+
+
+                    //Affiche reellement l'objet. getChildren : liste ces enfants
+                    root.getChildren().add(l1);
+                    root.getChildren().add(l2);
+                    root.getChildren().add(l3);
+                    root.getChildren().add(l4);
+                    System.out.println("Voilà le rectangle que vous avez dessiné !");
+                }else {
+                    System.out.println("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                }
+
+
+            }
+
+        });
+
+        //RECTANGLE !!!
+        MenuItem rectangleMenuItem = new MenuItem("Rectangle"); //Création du sous-menu Rectangle
+        rectangleMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+                Point[] points = new Point[4];
+
+
+                TextInputDialog coord_point = new TextInputDialog("");
+                for (int i = 1; i < 5; i++)
+                {
+                    coord_point.setTitle("Saisie des coordonnées");
+                    coord_point.setHeaderText("Saisie des coordonnées du point " + i);
+                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+
+                    Optional<String> result = coord_point.showAndWait();
+
+                    if (result.isPresent()){
+                        //récupère les variable, transforme les en double et créé un objet point
+                        String[] coordonnees = result.get().split(","); //Sépare les coordonnées
+                        double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
+                        double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
+                        points[i - 1] = new Point(x,y);
+                    }
+                }
+
+                Rectangle r1 = new Rectangle(points[0], points[1], points[2], points[3]);
+
+                if (r1.verification()) {
+                    //Premiere ligne a dessiner
+                    Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
+                    l1.setStroke(Color.BLUE);
+                    l1.setStrokeWidth(5);
+
+                    //Deuxieme ligne a dessiner
+                    Line l2 = new Line(points[1].getX()+100, points[1].getY()+100, points[2].getX()+100, points[2].getY()+100);
+                    l2.setStroke(Color.BLUE);
+                    l2.setStrokeWidth(5);
+
+                    //Troisieme ligne a dessiner
+                    Line l3 = new Line(points[2].getX()+100, points[2].getY()+100, points[3].getX()+100, points[3].getY()+100);
+                    l3.setStroke(Color.BLUE);
+                    l3.setStrokeWidth(5);
+
+                    //quatrieme ligne a dessiner
+                    Line l4 = new Line(points[3].getX()+100, points[3].getY()+100, points[0].getX()+100, points[0].getY()+100);
+                    l4.setStroke(Color.BLUE);
+                    l4.setStrokeWidth(5);
+
+
+                    //Affiche reellement l'objet. getChildren : liste ces enfants
+                    root.getChildren().add(l1);
+                    root.getChildren().add(l2);
+                    root.getChildren().add(l3);
+                    root.getChildren().add(l4);
+                    System.out.println("Voilà le rectangle que vous avez dessiné !");
+                }else {
+                    System.out.println("Vous n'avez pas dessiné un rectangle, recommencez avec des coordonnées juste !");
+                }
             }
         });
 
+        //PARALLELOGRAMME !!!
+        MenuItem parallélogrammeMenuItem = new MenuItem("Parallélogramme"); //Création du sous-menu Parallélogramme
+        parallélogrammeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Handle the open button event
+                Point[] points = new Point[4];
+
+
+                TextInputDialog coord_point = new TextInputDialog("");
+                for (int i = 1; i < 5; i++)
+                {
+                    coord_point.setTitle("Saisie des coordonnées");
+                    coord_point.setHeaderText("Saisie des coordonnées du point " + i);
+                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+
+                    Optional<String> result = coord_point.showAndWait();
+
+                    if (result.isPresent()){
+                        //récupère les variable, transforme les en double et créé un objet point
+                        String[] coordonnees = result.get().split(","); //Sépare les coordonnées
+                        double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
+                        double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
+                        points[i - 1] = new Point(x,y);
+                    }
+                }
+
+                Parallélogramme p1 = new Parallélogramme(points[0], points[1], points[2], points[3]);
+
+                if (p1.verification()) {
+                    //Premiere ligne a dessiner
+                    Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
+                    l1.setStroke(Color.GREEN);
+                    l1.setStrokeWidth(5);
+
+                    //Deuxieme ligne a dessiner
+                    Line l2 = new Line(points[1].getX()+100, points[1].getY()+100, points[2].getX()+100, points[2].getY()+100);
+                    l2.setStroke(Color.GREEN);
+                    l2.setStrokeWidth(5);
+
+                    //Troisieme ligne a dessiner
+                    Line l3 = new Line(points[2].getX()+100, points[2].getY()+100, points[3].getX()+100, points[3].getY()+100);
+                    l3.setStroke(Color.GREEN);
+                    l3.setStrokeWidth(5);
+
+                    //quatrieme ligne a dessiner
+                    Line l4 = new Line(points[3].getX()+100, points[3].getY()+100, points[0].getX()+100, points[0].getY()+100);
+                    l4.setStroke(Color.GREEN);
+                    l4.setStrokeWidth(5);
+
+
+                    //Affiche reellement l'objet. getChildren : liste ces enfants
+                    root.getChildren().add(l1);
+                    root.getChildren().add(l2);
+                    root.getChildren().add(l3);
+                    root.getChildren().add(l4);
+                    System.out.println("Voilà le parallelogramme que vous avez dessiné !");
+                }else {
+                    System.out.println("Vous n'avez pas dessiné un parallelogramme, recommencez avec des coordonnées juste !");
+                }
+            }
+        });
+
+        //CERF-VOLANT !!!
         MenuItem cerfvolantMenuItem = new MenuItem("Cerf-volant"); //Création du sous-menu Cerf-volant
         cerfvolantMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
+                Point[] points = new Point[4];
+
+
+                TextInputDialog coord_point = new TextInputDialog("");
+                for (int i = 1; i < 5; i++)
+                {
+                    coord_point.setTitle("Saisie des coordonnées");
+                    coord_point.setHeaderText("Saisie des coordonnées du point " + i);
+                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+
+                    Optional<String> result = coord_point.showAndWait();
+
+                    if (result.isPresent()){
+                        //récupère les variable, transforme les en double et créé un objet point
+                        String[] coordonnees = result.get().split(","); //Sépare les coordonnées
+                        double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
+                        double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
+                        points[i - 1] = new Point(x,y);
+                    }
+                }
+
+                Cerfvolant cerf1 = new Cerfvolant(points[0], points[1], points[2], points[3]);
+
+                if (cerf1.verification()) {
+                    //Premiere ligne a dessiner
+                    Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
+                    l1.setStroke(Color.PURPLE);
+                    l1.setStrokeWidth(5);
+
+                    //Deuxieme ligne a dessiner
+                    Line l2 = new Line(points[1].getX()+100, points[1].getY()+100, points[2].getX()+100, points[2].getY()+100);
+                    l2.setStroke(Color.PURPLE);
+                    l2.setStrokeWidth(5);
+
+                    //Troisieme ligne a dessiner
+                    Line l3 = new Line(points[2].getX()+100, points[2].getY()+100, points[3].getX()+100, points[3].getY()+100);
+                    l3.setStroke(Color.PURPLE);
+                    l3.setStrokeWidth(5);
+
+                    //quatrieme ligne a dessiner
+                    Line l4 = new Line(points[3].getX()+100, points[3].getY()+100, points[0].getX()+100, points[0].getY()+100);
+                    l4.setStroke(Color.PURPLE);
+                    l4.setStrokeWidth(5);
+
+
+                    //Affiche reellement l'objet. getChildren : liste ces enfants
+                    root.getChildren().add(l1);
+                    root.getChildren().add(l2);
+                    root.getChildren().add(l3);
+                    root.getChildren().add(l4);
+                    System.out.println("Voilà le cerf-volant que vous avez dessiné !");
+                }else {
+                    System.out.println("Vous n'avez pas dessiné un cerf-volant, recommencez avec des coordonnées juste !");
+                }
             }
         });
 
@@ -70,30 +296,123 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
+                Point[] points = new Point[4];
+
+
+                TextInputDialog coord_point = new TextInputDialog("");
+                for (int i = 1; i < 5; i++)
+                {
+                    coord_point.setTitle("Saisie des coordonnées");
+                    coord_point.setHeaderText("Saisie des coordonnées du point " + i);
+                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+
+                    Optional<String> result = coord_point.showAndWait();
+
+                    if (result.isPresent()){
+                        //récupère les variable, transforme les en double et créé un objet point
+                        String[] coordonnees = result.get().split(","); //Sépare les coordonnées
+                        double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
+                        double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
+                        points[i - 1] = new Point(x,y);
+                    }
+                }
+
+                Losange losange = new Losange(points[0], points[1], points[2], points[3]);
+
+                if (losange.verification()) {
+                    //Premiere ligne a dessiner
+                    Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
+                    l1.setStroke(Color.ORANGE);
+                    l1.setStrokeWidth(5);
+
+                    //Deuxieme ligne a dessiner
+                    Line l2 = new Line(points[1].getX()+100, points[1].getY()+100, points[2].getX()+100, points[2].getY()+100);
+                    l2.setStroke(Color.ORANGE);
+                    l2.setStrokeWidth(5);
+
+                    //Troisieme ligne a dessiner
+                    Line l3 = new Line(points[2].getX()+100, points[2].getY()+100, points[3].getX()+100, points[3].getY()+100);
+                    l3.setStroke(Color.ORANGE);
+                    l3.setStrokeWidth(5);
+
+                    //quatrieme ligne a dessiner
+                    Line l4 = new Line(points[3].getX()+100, points[3].getY()+100, points[0].getX()+100, points[0].getY()+100);
+                    l4.setStroke(Color.ORANGE);
+                    l4.setStrokeWidth(5);
+
+
+                    //Affiche reellement l'objet. getChildren : liste ces enfants
+                    root.getChildren().add(l1);
+                    root.getChildren().add(l2);
+                    root.getChildren().add(l3);
+                    root.getChildren().add(l4);
+                    System.out.println("Voilà le losange que vous avez dessiné !");
+                }else {
+                    System.out.println("Vous n'avez pas dessiné un losange, recommencez avec des coordonnées juste !");
+                }
             }
         });
 
-        MenuItem parallélogrammeMenuItem = new MenuItem("Parallélogramme"); //Création du sous-menu Parallélogramme
-        parallélogrammeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Handle the open button event
-            }
-        });
-
-        MenuItem rectangleMenuItem = new MenuItem("Rectangle"); //Création du sous-menu Rectangle
-        rectangleMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Handle the open button event
-            }
-        });
 
         MenuItem trapèzeMenuItem = new MenuItem("Trapèze"); //Création du sous-menu Trapèze
         trapèzeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
+                Point[] points = new Point[4];
+
+
+                TextInputDialog coord_point = new TextInputDialog("");
+                for (int i = 1; i < 5; i++)
+                {
+                    coord_point.setTitle("Saisie des coordonnées");
+                    coord_point.setHeaderText("Saisie des coordonnées du point " + i);
+                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+
+                    Optional<String> result = coord_point.showAndWait();
+
+                    if (result.isPresent()){
+                        //récupère les variable, transforme les en double et créé un objet point
+                        String[] coordonnees = result.get().split(","); //Sépare les coordonnées
+                        double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
+                        double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
+                        points[i - 1] = new Point(x,y);
+                    }
+                }
+
+                Trapèze t1 = new Trapèze(points[0], points[1], points[2], points[3]);
+
+                if (t1.verification()) {
+                    //Premiere ligne a dessiner
+                    Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
+                    l1.setStroke(Color.GREY);
+                    l1.setStrokeWidth(5);
+
+                    //Deuxieme ligne a dessiner
+                    Line l2 = new Line(points[1].getX()+100, points[1].getY()+100, points[2].getX()+100, points[2].getY()+100);
+                    l2.setStroke(Color.GREY);
+                    l2.setStrokeWidth(5);
+
+                    //Troisieme ligne a dessiner
+                    Line l3 = new Line(points[2].getX()+100, points[2].getY()+100, points[3].getX()+100, points[3].getY()+100);
+                    l3.setStroke(Color.GREY);
+                    l3.setStrokeWidth(5);
+
+                    //quatrieme ligne a dessiner
+                    Line l4 = new Line(points[3].getX()+100, points[3].getY()+100, points[0].getX()+100, points[0].getY()+100);
+                    l4.setStroke(Color.GREY);
+                    l4.setStrokeWidth(5);
+
+
+                    //Affiche reellement l'objet. getChildren : liste ces enfants
+                    root.getChildren().add(l1);
+                    root.getChildren().add(l2);
+                    root.getChildren().add(l3);
+                    root.getChildren().add(l4);
+                    System.out.println("Voilà le trapèze que vous avez dessiné !");
+                }else {
+                    System.out.println("Vous n'avez pas dessiné un trapèze, recommencez avec des coordonnées juste !");
+                }
             }
         });
 
@@ -106,15 +425,16 @@ public class Main extends Application {
 
         menuBar.getMenus().add(figureMenu);
 
-        VBox root = new VBox();
         root.getChildren().add(menuBar);
 
         /*---------CRÉATION DU MENU POUR CREER UNE FORME GEOMETRIQUE---------------*/
 
-        Scene scene = new Scene(root, 1920, 1080);
+        Scene scene = new Scene(root, 600, 600);
         stage.setTitle("GeoGebra");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

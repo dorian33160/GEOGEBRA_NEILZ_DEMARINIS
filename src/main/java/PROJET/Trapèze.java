@@ -56,15 +56,15 @@ public class Trapèze extends Quadrilatere{
 
     }
 
-    public String vérification()
+    public boolean verification()
     {
         if (longueur[0] == longueur[3] && longueur[1] == longueur[2])
         {
-            return "Je suis un trapèze";
+            return true;
         }
         else
         {
-            return "Je ne suis pas un trapèze";
+            return false;
         }
     }
 

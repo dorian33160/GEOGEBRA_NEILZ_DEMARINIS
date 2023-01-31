@@ -1,6 +1,6 @@
 package PROJET;
 
-public class Losange extends Quadrilatere{
+public class Losange extends Quadrilatere {
 
     private Point[] sommet;
 
@@ -35,15 +35,15 @@ public class Losange extends Quadrilatere{
 
     }
 
-    public String vérification()
+    public boolean verification()
     {
         if (côté(sommet[0], sommet[1]) == côté(sommet[1], sommet[2]) && côté(sommet[1], sommet[2]) == côté(sommet[2], sommet[3]) && côté(sommet[2], sommet[3]) == côté(sommet[3], sommet[0]))
         {
-            return "Je suis un losange";
+            return true;
         }
         else
         {
-            return "Je ne suis pas un losange";
+            return false;
         }
     }
 
