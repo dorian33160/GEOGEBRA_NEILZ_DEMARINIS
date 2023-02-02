@@ -523,7 +523,7 @@ public class Main extends Application {
 
                 Trapèze t1 = new Trapèze(points[0], points[1], points[2], points[3]);
 
-                if (t1.verification()) {
+                //if (t1.verification()) {
                     //Premiere ligne a dessiner
                     Line l1 = new Line(points[0].getX()+100, points[0].getY()+100, points[1].getX()+100, points[1].getY()+100);
                     l1.setStroke(Color.GREY);
@@ -550,13 +550,13 @@ public class Main extends Application {
                     root.getChildren().add(l2);
                     root.getChildren().add(l3);
                     root.getChildren().add(l4);
-                }else {
+                //}else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
                     alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
-                }
+                //}
             }
         });
 

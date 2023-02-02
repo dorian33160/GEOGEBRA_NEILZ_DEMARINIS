@@ -13,6 +13,14 @@ public class Trapèze extends Quadrilatere{
         sommet[1] = point2;
         sommet[2] = point3;
         sommet[3] = point4;
+
+        longueur = new double[4];
+
+        longueur[0] = point1.taille_segment(point2);
+        longueur[1] = point2.taille_segment(point3);
+        longueur[2] = point3.taille_segment(point4);
+        longueur[3] = point4.taille_segment(point1);
+
     }
 
     public String côté (InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
@@ -21,18 +29,6 @@ public class Trapèze extends Quadrilatere{
         double côté2;
         double côté3;
         double côté4;
-
-        longueur = new double[4];
-
-        côté1 = point1.taille_segment(point2);
-        côté2 = point2.taille_segment(point3);
-        côté3 = point3.taille_segment(point4);
-        côté4 = point4.taille_segment(point1);
-
-        longueur[0] = côté1;
-        longueur[1] = côté2;
-        longueur[2] = côté3;
-        longueur[3] = côté4;
 
         StringBuilder sb = new StringBuilder();
         for (double cote : longueur) {
