@@ -2,12 +2,12 @@ package PROJET;
 
 public class Carré extends Quadrilatere {
 
-    private Point[] sommet;
+    private InterPoint[] sommet;
 
-    Carré (Point point1, Point point2, Point point3, Point point4)
+    Carré (InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         super(point1,point2, point3, point4);
-        sommet = new Point[4];
+        sommet = new InterPoint[4];
         sommet[0] = point1;
         sommet[1] = point2;
         sommet[2] = point3;
@@ -15,7 +15,7 @@ public class Carré extends Quadrilatere {
 
     }
 
-    public double côté (Point point1, Point point2)
+    public double côté (InterPoint point1, InterPoint point2)
     {
         double côté;
         côté = point2.taille_segment(point1);
@@ -28,7 +28,7 @@ public class Carré extends Quadrilatere {
     {
 
         StringBuilder sb = new StringBuilder();
-        for (Point point : sommet) {
+        for (InterPoint point : sommet) {
             sb.append("(").append(point.getX()).append(",").append(point.getY()).append(")");
         }
 

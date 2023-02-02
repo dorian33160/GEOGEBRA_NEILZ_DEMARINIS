@@ -2,20 +2,20 @@ package PROJET;
 
 public class Trapèze extends Quadrilatere{
 
-    private Point[] sommet;
+    private InterPoint[] sommet;
     private double[] longueur;
 
-    Trapèze (Point point1, Point point2, Point point3, Point point4)
+    Trapèze (InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         super(point1,point2, point3, point4);
-        sommet = new Point[4];
+        sommet = new InterPoint[4];
         sommet[0] = point1;
         sommet[1] = point2;
         sommet[2] = point3;
         sommet[3] = point4;
     }
 
-    public String côté (Point point1, Point point2, Point point3, Point point4)
+    public String côté (InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         double côté1;
         double côté2;
@@ -48,7 +48,7 @@ public class Trapèze extends Quadrilatere{
     {
 
         StringBuilder sb = new StringBuilder();
-        for (Point point : sommet) {
+        for (InterPoint point : sommet) {
             sb.append("(").append(point.getX()).append(",").append(point.getY()).append(")");
         }
 
@@ -58,7 +58,15 @@ public class Trapèze extends Quadrilatere{
 
     public boolean verification()
     {
-        if (longueur[0] == longueur[3] && longueur[1] == longueur[2])
+        double longueur1 = longueur[0];
+        double longueur3 = longueur[2];
+
+        double angle1 = sommet[0].calculerAngle(sommet[0], sommet[1], sommet[2]);
+        double angle2 = sommet[1].calculerAngle(sommet[1], sommet[2], sommet[3]);
+        double angle3 = sommet[2].calculerAngle(sommet[2], sommet[3], sommet[0]);
+        double angle4 = sommet[3].calculerAngle(sommet[3], sommet[0], sommet[1]);
+
+        if (longueur1 == longueur3 && angle1 == angle3 && angle2 == angle4)
         {
             return true;
         }

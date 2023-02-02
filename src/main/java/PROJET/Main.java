@@ -1,15 +1,14 @@
 package PROJET;
 
+import java.util.ArrayList;
+import java.util.Optional;
+import javafx.scene.control.ChoiceDialog;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,15 +42,36 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
 
-                Point[] points = new Point[4];
+                InterPoint[] points = new InterPoint[4];
 
+                String type_point = "";
+
+                ArrayList<String> choices = new ArrayList<>();
+                choices.add("Point");
+                choices.add("Point2");
+
+                ChoiceDialog<String> dialog = new ChoiceDialog<>("Choix du type de point", choices);
+                dialog.setTitle("Choix");
+                dialog.setHeaderText("Sélectionnez une option");
+                dialog.setContentText("Options :");
+
+                Optional<String> resultat = dialog.showAndWait();
+
+                if (resultat.isPresent()) {
+                    type_point = resultat.get();
+                } else {
+                    System.out.println("Aucune option choisie");
+                }
 
                 TextInputDialog coord_point = new TextInputDialog("");
                 for (int i = 1; i < 5; i++)
                 {
                     coord_point.setTitle("Saisie des coordonnées");
                     coord_point.setHeaderText("Saisie des coordonnées du point " + i);
-                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    if (type_point.equals("Point"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    else if (type_point.equals("Point2"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme angle, rayon :");
 
                     Optional<String> result = coord_point.showAndWait();
 
@@ -60,10 +80,10 @@ public class Main extends Application {
                         String[] coordonnees = result.get().split(","); //Sépare les coordonnées
                         double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
                         double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
-                        points[i - 1] = new Point(x,y);
+                        points[i - 1] = FabriquePoint.create(type_point, x, y); //Créé un objet point avec les coordonnées
                     }
                 }
-                //System.out.println(points[0]+ " "  + points[1]+ " "  + points[2]+ " " + points[3]);
+                System.out.println(points[0].getX()+ " " + points[0].getY() + " " + points[1].getX() + " " + points[1].getY() + " " + points[2].getX() + " " + points[2].getY() + " " + points[3].getX() + " " + points[3].getY());
                 Carré c1 = new Carré(points[0], points[1], points[2], points[3]);
 
                 //si c'est un carré ca affiche
@@ -98,10 +118,9 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
-                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
                 }
-
 
             }
 
@@ -113,15 +132,36 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
-                Point[] points = new Point[4];
+                InterPoint[] points = new InterPoint[4];
 
+                String type_point = "";
+
+                ArrayList<String> choices = new ArrayList<>();
+                choices.add("Point");
+                choices.add("Point2");
+
+                ChoiceDialog<String> dialog = new ChoiceDialog<>("Choix du type de point", choices);
+                dialog.setTitle("Choix");
+                dialog.setHeaderText("Sélectionnez une option");
+                dialog.setContentText("Options :");
+
+                Optional<String> resultat = dialog.showAndWait();
+
+                if (resultat.isPresent()) {
+                    type_point = resultat.get();
+                } else {
+                    System.out.println("Aucune option choisie");
+                }
 
                 TextInputDialog coord_point = new TextInputDialog("");
                 for (int i = 1; i < 5; i++)
                 {
                     coord_point.setTitle("Saisie des coordonnées");
                     coord_point.setHeaderText("Saisie des coordonnées du point " + i);
-                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    if (type_point.equals("Point"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    else if (type_point.equals("Point2"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme angle, rayon :");
 
                     Optional<String> result = coord_point.showAndWait();
 
@@ -130,7 +170,7 @@ public class Main extends Application {
                         String[] coordonnees = result.get().split(","); //Sépare les coordonnées
                         double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
                         double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
-                        points[i - 1] = new Point(x,y);
+                        points[i - 1] = FabriquePoint.create(type_point, x, y);
                     }
                 }
 
@@ -167,7 +207,7 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
-                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
                 }
             }
@@ -179,15 +219,36 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
-                Point[] points = new Point[4];
+                InterPoint[] points = new InterPoint[4];
 
+                String type_point = "";
+
+                ArrayList<String> choices = new ArrayList<>();
+                choices.add("Point");
+                choices.add("Point2");
+
+                ChoiceDialog<String> dialog = new ChoiceDialog<>("Choix du type de point", choices);
+                dialog.setTitle("Choix");
+                dialog.setHeaderText("Sélectionnez une option");
+                dialog.setContentText("Options :");
+
+                Optional<String> resultat = dialog.showAndWait();
+
+                if (resultat.isPresent()) {
+                    type_point = resultat.get();
+                } else {
+                    System.out.println("Aucune option choisie");
+                }
 
                 TextInputDialog coord_point = new TextInputDialog("");
                 for (int i = 1; i < 5; i++)
                 {
                     coord_point.setTitle("Saisie des coordonnées");
                     coord_point.setHeaderText("Saisie des coordonnées du point " + i);
-                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    if (type_point.equals("Point"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    else if (type_point.equals("Point2"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme angle, rayon :");
 
                     Optional<String> result = coord_point.showAndWait();
 
@@ -196,7 +257,7 @@ public class Main extends Application {
                         String[] coordonnees = result.get().split(","); //Sépare les coordonnées
                         double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
                         double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
-                        points[i - 1] = new Point(x,y);
+                        points[i - 1] = FabriquePoint.create(type_point, x, y);
                     }
                 }
 
@@ -233,7 +294,7 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
-                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
                 }
             }
@@ -245,15 +306,36 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
-                Point[] points = new Point[4];
+                InterPoint[] points = new InterPoint[4];
 
+                String type_point = "";
+
+                ArrayList<String> choices = new ArrayList<>();
+                choices.add("Point");
+                choices.add("Point2");
+
+                ChoiceDialog<String> dialog = new ChoiceDialog<>("Choix du type de point", choices);
+                dialog.setTitle("Choix");
+                dialog.setHeaderText("Sélectionnez une option");
+                dialog.setContentText("Options :");
+
+                Optional<String> resultat = dialog.showAndWait();
+
+                if (resultat.isPresent()) {
+                    type_point = resultat.get();
+                } else {
+                    System.out.println("Aucune option choisie");
+                }
 
                 TextInputDialog coord_point = new TextInputDialog("");
                 for (int i = 1; i < 5; i++)
                 {
                     coord_point.setTitle("Saisie des coordonnées");
                     coord_point.setHeaderText("Saisie des coordonnées du point " + i);
-                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    if (type_point.equals("Point"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    else if (type_point.equals("Point2"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme angle, rayon :");
 
                     Optional<String> result = coord_point.showAndWait();
 
@@ -262,7 +344,7 @@ public class Main extends Application {
                         String[] coordonnees = result.get().split(","); //Sépare les coordonnées
                         double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
                         double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
-                        points[i - 1] = new Point(x,y);
+                        points[i - 1] = FabriquePoint.create(type_point, x, y);
                     }
                 }
 
@@ -299,7 +381,7 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
-                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
                 }
             }
@@ -310,15 +392,36 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
-                Point[] points = new Point[4];
+                InterPoint[] points = new InterPoint[4];
 
+                String type_point = "";
+
+                ArrayList<String> choices = new ArrayList<>();
+                choices.add("Point");
+                choices.add("Point2");
+
+                ChoiceDialog<String> dialog = new ChoiceDialog<>("Choix du type de point", choices);
+                dialog.setTitle("Choix");
+                dialog.setHeaderText("Sélectionnez une option");
+                dialog.setContentText("Options :");
+
+                Optional<String> resultat = dialog.showAndWait();
+
+                if (resultat.isPresent()) {
+                    type_point = resultat.get();
+                } else {
+                    System.out.println("Aucune option choisie");
+                }
 
                 TextInputDialog coord_point = new TextInputDialog("");
                 for (int i = 1; i < 5; i++)
                 {
                     coord_point.setTitle("Saisie des coordonnées");
                     coord_point.setHeaderText("Saisie des coordonnées du point " + i);
-                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    if (type_point.equals("Point"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    else if (type_point.equals("Point2"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme angle, rayon :");
 
                     Optional<String> result = coord_point.showAndWait();
 
@@ -327,7 +430,7 @@ public class Main extends Application {
                         String[] coordonnees = result.get().split(","); //Sépare les coordonnées
                         double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
                         double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
-                        points[i - 1] = new Point(x,y);
+                        points[i - 1] = FabriquePoint.create(type_point, x, y);
                     }
                 }
 
@@ -364,7 +467,7 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
-                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
                 }
             }
@@ -376,15 +479,36 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Handle the open button event
-                Point[] points = new Point[4];
+                InterPoint[] points = new InterPoint[4];
 
+                String type_point = "";
+
+                ArrayList<String> choices = new ArrayList<>();
+                choices.add("Point");
+                choices.add("Point2");
+
+                ChoiceDialog<String> dialog = new ChoiceDialog<>("Choix du type de point", choices);
+                dialog.setTitle("Choix");
+                dialog.setHeaderText("Sélectionnez une option");
+                dialog.setContentText("Options :");
+
+                Optional<String> resultat = dialog.showAndWait();
+
+                if (resultat.isPresent()) {
+                    type_point = resultat.get();
+                } else {
+                    System.out.println("Aucune option choisie");
+                }
 
                 TextInputDialog coord_point = new TextInputDialog("");
                 for (int i = 1; i < 5; i++)
                 {
                     coord_point.setTitle("Saisie des coordonnées");
                     coord_point.setHeaderText("Saisie des coordonnées du point " + i);
-                    coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    if (type_point.equals("Point"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme x,y :");
+                    else if (type_point.equals("Point2"))
+                        coord_point.setContentText("Entrez les coordonnées sous la forme angle, rayon :");
 
                     Optional<String> result = coord_point.showAndWait();
 
@@ -393,7 +517,7 @@ public class Main extends Application {
                         String[] coordonnees = result.get().split(","); //Sépare les coordonnées
                         double x = Double.parseDouble(coordonnees[0]); //Transforme la première coordonnée en double
                         double y = Double.parseDouble(coordonnees[1]); //Transforme la deuxième coordonnée en double
-                        points[i - 1] = new Point(x,y);
+                        points[i - 1] = FabriquePoint.create(type_point, x, y);
                     }
                 }
 
@@ -430,7 +554,7 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Erreur de coordonnées");
                     alert.setHeaderText(null);
-                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées juste");
+                    alert.setContentText("Vous n'avez pas dessiné un carré, recommencez avec des coordonnées justes");
                     alert.showAndWait();
                 }
             }

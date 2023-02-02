@@ -2,19 +2,19 @@ package PROJET;
 
 public class Rectangle extends Quadrilatere{
 
-    private Point[] sommet;
+    private InterPoint[] sommet;
 
-    Rectangle(Point point1, Point point2, Point point3, Point point4)
+    Rectangle(InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         super(point1,point2, point3, point4);
-        sommet = new Point[4];
+        sommet = new InterPoint[4];
         sommet[0] = point1;
         sommet[1] = point2;
         sommet[2] = point3;
         sommet[3] = point4;
     }
 
-    public double longueur1(Point point1, Point point2)
+    public double longueur1(InterPoint point1, InterPoint point2)
     {
         double longueur1;
 
@@ -24,7 +24,7 @@ public class Rectangle extends Quadrilatere{
 
     }
 
-    public double longueur2(Point point3, Point point4)
+    public double longueur2(InterPoint point3, InterPoint point4)
     {
         double longueur2;
 
@@ -34,7 +34,7 @@ public class Rectangle extends Quadrilatere{
 
     }
 
-    public double largeur1(Point point2, Point point3)
+    public double largeur1(InterPoint point2, InterPoint point3)
     {
         double largeur1;
 
@@ -44,7 +44,7 @@ public class Rectangle extends Quadrilatere{
 
     }
 
-    public double largeur2(Point point4, Point point1)
+    public double largeur2(InterPoint point4, InterPoint point1)
     {
         double largeur2;
 
@@ -71,7 +71,7 @@ public class Rectangle extends Quadrilatere{
     {
 
         StringBuilder sb = new StringBuilder();
-        for (Point point : sommet) {
+        for (InterPoint point : sommet) {
             sb.append("(").append(point.getX()).append(",").append(point.getY()).append(")");
         }
 

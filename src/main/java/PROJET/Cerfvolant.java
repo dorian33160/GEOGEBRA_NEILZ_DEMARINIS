@@ -2,20 +2,20 @@ package PROJET;
 
 public class Cerfvolant extends Quadrilatere{
 
-    private Point[] sommet;
+    private InterPoint[] sommet;
     private double[] longueur;
 
-    Cerfvolant(Point point1, Point point2, Point point3, Point point4)
+    Cerfvolant(InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         super(point1,point2, point3, point4);
-        sommet = new Point[4];
+        sommet = new InterPoint[4];
         sommet[0] = point1;
         sommet[1] = point2;
         sommet[2] = point3;
         sommet[3] = point4;
     }
 
-    public String côté(Point point1, Point point2, Point point3, Point point4)
+    public String côté(InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         double côté1;
         double côté2;
@@ -42,7 +42,7 @@ public class Cerfvolant extends Quadrilatere{
         return sb.toString();
 
     }
-    public double côté1(Point point1, Point point2)
+    public double côté1(InterPoint point1, InterPoint point2)
     {
         double côté1;
 
@@ -52,7 +52,7 @@ public class Cerfvolant extends Quadrilatere{
 
     }
 
-    public double côté2(Point point2, Point point3)
+    public double côté2(InterPoint point2, InterPoint point3)
     {
         double côté2;
 
@@ -62,7 +62,7 @@ public class Cerfvolant extends Quadrilatere{
 
     }
 
-    public double côté3(Point point3, Point point4)
+    public double côté3(InterPoint point3, InterPoint point4)
     {
         double côté3;
 
@@ -72,7 +72,7 @@ public class Cerfvolant extends Quadrilatere{
 
     }
 
-    public double côté4(Point point4, Point point1)
+    public double côté4(InterPoint point4, InterPoint point1)
     {
         double côté4;
 
@@ -99,7 +99,7 @@ public class Cerfvolant extends Quadrilatere{
     {
 
         StringBuilder sb = new StringBuilder();
-        for (Point point : sommet) {
+        for (InterPoint point : sommet) {
             sb.append("(").append(point.getX()).append(",").append(point.getY()).append(")");
         }
 
