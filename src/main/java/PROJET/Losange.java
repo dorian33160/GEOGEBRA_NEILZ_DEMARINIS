@@ -1,9 +1,20 @@
 package PROJET;
 
+/**
+ * The type Losange.
+ */
 public class Losange extends Quadrilatere {
 
-    private InterPoint[] sommet;
+    private InterPoint[] sommet; // tableau de points
 
+    /**
+     * Instantiates a new Losange.
+     *
+     * @param point1 the point 1
+     * @param point2 the point 2
+     * @param point3 the point 3
+     * @param point4 the point 4
+     */
     Losange (InterPoint point1, InterPoint point2, InterPoint point3, InterPoint point4)
     {
         super(point1,point2, point3, point4);
@@ -14,6 +25,13 @@ public class Losange extends Quadrilatere {
         sommet[3] = point4;
     }
 
+    /**
+     * Côté double.
+     *
+     * @param point1 the point 1
+     * @param point2 the point 2
+     * @return the double
+     */
     public double côté (InterPoint point1, InterPoint point2)
     {
         double côté;
@@ -35,6 +53,11 @@ public class Losange extends Quadrilatere {
 
     }
 
+    /**
+     * Verification boolean.
+     *
+     * @return the boolean
+     */
     public boolean verification()
     {
         if (sommet[0].calculerAngle(sommet[0], sommet[1], sommet[2]) == sommet[0].calculerAngle(sommet[0], sommet[3], sommet[2]))
@@ -47,6 +70,11 @@ public class Losange extends Quadrilatere {
         }
     }
 
+    /**
+     * Propriete string.
+     *
+     * @return the string
+     */
     public String propriete()
     {
         return "Un losange est un quadrilatère qui a ses quatre côtés de même longueur et ses quatre sommets distincts";

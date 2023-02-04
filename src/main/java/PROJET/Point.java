@@ -1,10 +1,19 @@
 package PROJET;
 
+/**
+ * The type Point.
+ */
 public class Point implements InterPoint{
 
     private double x;
     private double y;
 
+    /**
+     * Instantiates a new Point.
+     *
+     * @param x the x
+     * @param y the y
+     */
     Point(double x, double y)
     {
         this.x = x;
